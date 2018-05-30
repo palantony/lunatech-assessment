@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.lunatech.poc.model.Country;
 import com.lunatech.poc.pojo.CountryAirport;
 import com.lunatech.poc.pojo.CountryRunwayType;
 
+@Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
 	@Query("select country.countryCode , country.countryName from Country country")
 	List<Country> getCountryCodeAndName();

@@ -23,6 +23,15 @@ public class Country extends AuditModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public Country() {
+
+	}
+
+	public Country(String countryCode, String countryName) {
+		this.countryCode = countryCode;
+		this.countryName = countryName;
+	}
+
 	@Id
 	@Column(name = "countryId")
 	@NonNull
@@ -47,7 +56,7 @@ public class Country extends AuditModel {
 	private String keywords;
 
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
-	 @JsonIgnoreProperties("country")
+	@JsonIgnoreProperties("country")
 	private List<Airport> airports = new ArrayList<>();
 
 	public String getContinent() {
