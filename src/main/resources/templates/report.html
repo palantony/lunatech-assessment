@@ -2,21 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Report</title>
 </head>
 
 <body>
 
 
-<nav class="navbar navbar-default" th:fragment="header">
+	<nav class="navbar navbar-default" th:fragment="header">
 		<div>
 			<ul class="nav navbar-nav">
-				<li ><a href="/country">Country</a></li>
+				<li><a href="/country">Country</a></li>
 				<li class="active"><a href="/report">Report</a></li>
 			</ul>
 			<h4 align="right">Lunatech Airport Services</h4>
@@ -25,6 +28,87 @@
 
 
 
+	<div th:each="report : ${reports}">
+		<div th:if="${report.key} == HighestAirports">
+			<h2>Highest Airports Report</h2>
+			<div th:if="${report.value} != null">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Country Name</th>
+								<th>Number of Airports</th>
+							</tr>
+						</thead>
+						<tbody>
+							<div th:each="airport : ${report.value}">
+								<tr>
+									<td th:text="${airport.countryName}"></td>
+									<td th:text="${airport.airportCount}"></td>
+								</tr>
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div th:each="report : ${reports}">
+		<div th:if="${report.key} == LowestAirports">
+			<h2>Lowest Airports Report</h2>
+			<div th:if="${report.value} != null">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Country Name</th>
+								<th>Number of Airports</th>
+							</tr>
+						</thead>
+						<tbody>
+							<div th:each="airport : ${report.value}">
+								<tr>
+									<td th:text="${airport.countryName}"></td>
+									<td th:text="${airport.airportCount}"></td>
+								</tr>
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div th:each="report : ${reports}">
+		<div th:if="${report.key} == CountryRunwayType">
+			<h2>Country and its Runway type Report</h2>
+			<div th:if="${report.value} != null">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Country Name</th>
+								<th>Type of Runways</th>
+							</tr>
+						</thead>
+						<tbody>
+							<div th:each="runway : ${report.value}">
+								<tr>
+									<td th:text="${runway.countryName}"></td>
+									<td th:text="${runway.runwayType}"></td>
+								</tr>
+							</div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

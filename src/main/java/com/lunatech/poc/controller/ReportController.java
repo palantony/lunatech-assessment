@@ -36,11 +36,11 @@ public class ReportController {
 		highestAirportList = getCountryByAirportCount(SortOrder.DESC);
 		leastAirportList = getCountryByAirportCount(SortOrder.ASC);
 		countryRunwayTypeList = countryRepository.getCountryRunways();
-		Map<String, List<?>> countryAirportMap = new HashMap<>();
-		countryAirportMap.put("HighestAirports", highestAirportList);
-		countryAirportMap.put("LowestAirports", leastAirportList);
-		countryAirportMap.put("CountryRunwayType", countryRunwayTypeList);
-		model.addAttribute("results", countryAirportMap);
+		Map<String, List<?>> reportMap = new HashMap<>();
+		reportMap.put("HighestAirports", highestAirportList);
+		reportMap.put("LowestAirports", leastAirportList);
+		reportMap.put("CountryRunwayType", countryRunwayTypeList);
+		model.addAttribute("reports", reportMap);
 		return "report";
 	}
 
@@ -52,5 +52,5 @@ public class ReportController {
 		System.out.println("Object is Empty " + countryAirportList.size());
 		return countryAirportList;
 	}
-
+// Bonus req : Core sql select lengthCode,count(lengthCode) from runway group by lengthCode order by count(lengthCode) DESC LIMIT 10
 }
