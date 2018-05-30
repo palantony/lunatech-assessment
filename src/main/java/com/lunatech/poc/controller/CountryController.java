@@ -17,6 +17,7 @@ import com.lunatech.poc.model.Airport;
 import com.lunatech.poc.model.Country;
 import com.lunatech.poc.repository.AirportRepository;
 import com.lunatech.poc.repository.CountryRepository;
+import com.lunatech.poc.util.ReturnPath;
 
 @Controller
 public class CountryController {
@@ -28,18 +29,23 @@ public class CountryController {
 
 	@GetMapping(path = "/country")
 	public String getAllCountries(Model model) {
-		List<Country> countryList = countryRepository.getCountryCodeAndName();
-		model.addAttribute("country", countryList);
-		return "country";
+		model.addAttribute("country", getCountryList());
+		return ReturnPath.COUNTRY_PAGE;
 	}
 
 	@GetMapping(path = "/country/{countryCode}")
 	public String getAllAirportsByCountryCode(@PathVariable String countryCode, Model model) {
-		List<Airport> airportList = airportRepository.getAirportByCountryCode(countryCode);
-		System.out.println("Given Country code " + countryCode);
-		System.out.println("Airport list size " + countryCode);
-		model.addAttribute("airports", airportList);
-		return "country";
+		model.addAttribute("country", getCountryList());
+		model.addAttribute("airports", getAirportList(countryCode));
+		return ReturnPath.COUNTRY_PAGE;
+	}
+
+	private List<Airport> getAirportList(String countryCode) {
+		return airportRepository.getAirportByCountryCode(countryCode);
+	}
+
+	private List<Country> getCountryList() {
+		return countryRepository.getCountryCodeAndName();
 	}
 
 }

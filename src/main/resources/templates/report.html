@@ -109,6 +109,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="table-responsive">
+	<h2> Print the top 10 most common runway identifications </h2>
+	<h4> Core sql select lengthCode,count(lengthCode) from runway group by lengthCode order by count(lengthCode) DESC LIMIT 10</h4>
+	</div>
 </body>
 
 </html>

@@ -3,19 +3,61 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
 <script>
 	function fetchCountry() {
 		var country = document.getElementById('countryInput').value;
 		console.debug(window.location.href);
-		window.location.assign("/country/" + country);
+		var countryCode = country.slice(country.indexOf("(") + 1, country
+				.indexOf("(") + 1 + 2);
+		window.location.assign("/country/" + countryCode);
 	}
 </script>
+
+<script th:inline="javascript">
+	/*<![CDATA[*/
+
+	var countryList = /*[[${country}]]*/'default';
+	var country = [];
+	var countries = [];
+	for (i = 0; i < countryList.length; i++) {
+		country = countryList[i];
+		countries[i] = country[1] + ' (' + country[0] + ')';
+	}
+
+	$(function() {
+
+		$("#countryInput").autocomplete({
+			source : countries
+		});
+	});
+
+	/*]]>*/
+</script>
+
+
+
+
+
+
 <title>Airports</title>
 </head>
 <body>
@@ -33,14 +75,16 @@
 
 
 	<div class="container">
+
+
 		<form class="form-inline">
-			<div class="form-group">
-				<label for="countryInput">Country</label> <input type="text"
-					class="form-control" id="countryInput"
-					placeholder="Country Code or Name" />
+			<div class="ui-widget">
+				<label for="tags">Select Country </label> <input id="countryInput"
+					placeholder="Country Code or Name">
+				<button type="button" class="btn btn-default"
+					onclick="fetchCountry()">Submit</button>
 			</div>
-			<button type="button" class="btn btn-default"
-				onclick="fetchCountry()">Submit</button>
+
 		</form>
 
 		<div th:if="${airports} != null">
