@@ -4,21 +4,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class LunatechExcption extends RuntimeException {
+public class LunatechException extends RuntimeException {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public LunatechExcption() {
+	public LunatechException() {
         super();
     }
 
-    public LunatechExcption(String message) {
+    public LunatechException(String message) {
         super(message);
     }
 
-    public LunatechExcption(String message, Throwable cause) {
+    public LunatechException(String message, Throwable cause) {
         super(message, cause);
     }
 }

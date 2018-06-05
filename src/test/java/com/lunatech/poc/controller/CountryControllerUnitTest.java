@@ -2,6 +2,7 @@ package com.lunatech.poc.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.util.ArrayList;
@@ -53,6 +54,8 @@ public class CountryControllerUnitTest {
         // given
         given(countryRepository.getCountryCodeAndName())
                 .willReturn(populateMockCountryCodeAndName());
+        
+        
 
         // when
         MockHttpServletResponse response = mvc.perform(
@@ -61,9 +64,8 @@ public class CountryControllerUnitTest {
                 .andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-//        assertThat(response.getContentAsString()).isEqualTo(
-//        		jsonCountry.write(populateMockCountryCodeAndName()).getJson()
-//        );
+        assertThat(response.getContentAsString()).isNotNull();
+
     }
 
     private List<Country> populateMockCountryCodeAndName() {
