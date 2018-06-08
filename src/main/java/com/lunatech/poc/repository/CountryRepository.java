@@ -16,7 +16,7 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
 	@Query("select country.countryCode , country.countryName from Country country")
 	List<Country> getCountryCodeAndName();
 
-	@Query("select new com.lunatech.poc.pojo.CountryAirport(country.countryName, COUNT(airports)) FROM Country country JOIN country.airports airports GROUP BY country.countryName")
+	@Query("select new com.lunatech.poc.pojo.CountryAirport(country.countryName, COUNT(airports)) FROM Country country LEFT JOIN country.airports airports GROUP BY country.countryName")
 	List<CountryAirport> getCountryByAirportCount(Pageable pagable);
 	
 	@Query(nativeQuery = true,  
