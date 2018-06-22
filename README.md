@@ -13,9 +13,18 @@ This application is build to meet the following usecases </br>
 3) Countries having lowest number of airports </br>
 4) Country and its Runway type Report </br>
 
-## Build & Deploy
-(build) mvn clean install </br>
-(deploy) mvn spring-boot:run  </br>
+## How to run
+You can run the application from Maven, from Docker or as Java standalone executable. To build the application you will need Maven and Java8. After few seconds the application should be availabe, for example http://localhost:8080/health returns the health status.</br>
 
+### Maven
+Form the repository base folder run: </br>
+* mvn clean install </br>
+* mvn spring-boot:run </br>
+
+### Docker
+Docker should be installed in your computer.</br>
+
+sh build-docker.sh</br>
+sudo docker run --net=host -e JAVA_OPTS="-Xmx1g -Xms1g" java-api-guidelines</br>
 
 Testing
