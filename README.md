@@ -6,6 +6,10 @@ Used mysql as DB, and you may find db script under \db\lunatechdb.sql  ,build th
 ## Software / APIs
 Used spring-boot, bootstrap , Junit to implement the application.
 
+## Deployment Diagram
+
+<img width="379" alt="airport deployment diagram" src="https://user-images.githubusercontent.com/1983768/41763495-b0ce71c4-75fe-11e8-9ade-6c257e403470.PNG">
+
 ## Services
 This application is build to meet the following usecases </br>
 1) List all airports for given country </br>
